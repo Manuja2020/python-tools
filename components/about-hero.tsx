@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Download, Shield, Zap } from "lucide-react"
 
 export function AboutHero() {
@@ -14,12 +13,7 @@ export function AboutHero() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex justify-center space-x-4 mb-8"
-          >
+          <div className="flex justify-center space-x-4 mb-8 animate-fade-in">
             <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full">
               <Download className="w-8 h-8 text-primary" />
             </div>
@@ -29,27 +23,17 @@ export function AboutHero() {
             <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full">
               <Zap className="w-8 h-8 text-primary" />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl text-balance"
-          >
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl text-balance animate-fade-in-up animation-delay-200">
             About Y2Mate
             <span className="text-primary block">Downloaders</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 text-lg leading-8 text-muted-foreground max-w-3xl mx-auto text-pretty"
-          >
+          <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-3xl mx-auto text-pretty animate-fade-in-up animation-delay-400">
             We're on a mission to make downloading videos and audio content simple, fast, and secure. Since 2024, we've
             been helping millions of users access their favorite content with just a few clicks.
-          </motion.p>
+          </p>
         </div>
       </div>
     </section>

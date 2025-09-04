@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Github, Linkedin, Twitter } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -57,35 +56,17 @@ export function AboutTeam() {
     <section className="py-16 sm:py-24 bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance"
-          >
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance animate-fade-in">
             Meet Our Team
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty"
-          >
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty animate-fade-in-up animation-delay-200">
             The passionate individuals behind Y2Mate Downloaders
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {team.map((member, index) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
+            <div key={member.name} className="animate-fade-in-up" style={{ animationDelay: `${400 + index * 100}ms` }}>
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardContent className="p-6 text-center">
                   <div className="mb-4">
@@ -111,7 +92,7 @@ export function AboutTeam() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

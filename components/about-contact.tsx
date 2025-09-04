@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Mail, MessageSquare, HelpCircle, Shield } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -41,35 +40,17 @@ export function AboutContact() {
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance"
-          >
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance animate-fade-in">
             Get In Touch
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty"
-          >
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty animate-fade-in-up animation-delay-200">
             We'd love to hear from you. Choose the best way to reach our team.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {contactOptions.map((option, index) => (
-            <motion.div
-              key={option.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
+            <div key={option.title} className="animate-fade-in-up" style={{ animationDelay: `${400 + index * 100}ms` }}>
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
@@ -89,25 +70,19 @@ export function AboutContact() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center bg-muted/50 rounded-lg p-8"
-        >
+        <div className="text-center bg-muted/50 rounded-lg p-8 animate-fade-in-up animation-delay-400">
           <h3 className="text-xl font-semibold text-foreground mb-4">Response Time</h3>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             We typically respond to all inquiries within 24 hours during business days. For urgent technical issues, our
             support team is available around the clock to ensure your downloading experience remains smooth and
             uninterrupted.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
 
 const features = [
@@ -22,49 +21,28 @@ export function AboutFeatures() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance mb-6"
-            >
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance mb-6 animate-fade-in">
               Why Choose Our Platform?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-lg text-muted-foreground leading-relaxed mb-8 text-pretty"
-            >
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 text-pretty animate-fade-in-up animation-delay-200">
               We've built the most comprehensive and user-friendly downloading platform with cutting-edge technology and
               a focus on user experience. Here's what makes us different:
-            </motion.p>
+            </p>
           </div>
 
           <div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-1 gap-4"
-            >
+            <div className="grid grid-cols-1 gap-4 animate-fade-in animation-delay-400">
               {features.map((feature, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
-                  viewport={{ once: true }}
-                  className="flex items-center space-x-3"
+                  className="flex items-center space-x-3 animate-fade-in"
+                  style={{ animationDelay: `${500 + index * 50}ms` }}
                 >
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="text-foreground">{feature}</span>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
