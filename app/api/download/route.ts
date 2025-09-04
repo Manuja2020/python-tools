@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     // Execute Python script
     const scriptPath = path.join(process.cwd(), "scripts", "download_video.py")
-    const formatType = format === "mp3" ? "audio" : "video"
+    const formatType = format === "audio" ? "audio" : "video"
 
     return new Promise((resolve) => {
       const pythonProcess = spawn("python3", [scriptPath, url, formatType])
