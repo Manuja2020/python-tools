@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Shield, Zap, Globe, Download, Music, Video } from "lucide-react"
 import { CardContent } from "@/components/ui/card"
 import { AnimatedCard } from "@/components/animated-card"
@@ -43,24 +42,12 @@ export function Features() {
     <section className="py-16 sm:py-24 bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance"
-          >
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance animate-fade-in-up">
             Why Choose Our Downloader?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty"
-          >
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty animate-fade-in-up animation-delay-200">
             Experience the fastest and most reliable way to download your favorite content
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -68,14 +55,9 @@ export function Features() {
             <AnimatedCard key={feature.title} delay={index * 0.1} flipOnHover={true}>
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4 mb-4">
-                  // Add icon hover animation
-                  <motion.div
-                    className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg hover:rotate-12 transition-transform duration-300">
                     <feature.icon className="w-6 h-6 text-primary" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>

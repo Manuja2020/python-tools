@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { Download, Loader2, CheckCircle, AlertCircle, LinkIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -128,13 +127,11 @@ export function Downloader() {
                 <label className="text-sm font-medium text-foreground">Choose format</label>
                 <div className="grid grid-cols-2 gap-4">
                   {formats.map((format) => (
-                    <motion.button
+                    <button
                       key={format.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
                       onClick={() => setSelectedFormat(format.id)}
                       className={cn(
-                        "flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all",
+                        "flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all hover:scale-105 active:scale-95",
                         selectedFormat === format.id
                           ? "border-primary bg-primary/10 text-primary"
                           : "border-border hover:border-primary/50 hover:bg-accent",
@@ -143,120 +140,74 @@ export function Downloader() {
                     >
                       <span className="text-2xl mb-1">{format.icon}</span>
                       <span className="text-sm font-medium">{format.label}</span>
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
 
               {/* Download Button */}
-              <motion.div
-                whileHover={{ scale: downloadState === "idle" ? 1.02 : 1 }}
-                whileTap={{ scale: downloadState === "idle" ? 0.98 : 1 }}
-              >
+              <div className="hover:scale-105 active:scale-95 transition-transform">
                 <Button
                   onClick={downloadState === "success" || downloadState === "error" ? resetDownload : handleDownload}
                   disabled={!url.trim() || downloadState === "loading"}
                   className="w-full h-14 text-lg font-semibold relative overflow-hidden"
                   size="lg"
                 >
-                  <AnimatePresence mode="wait">
-                    {downloadState === "idle" && (
-                      <motion.div
-                        key="idle"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="flex items-center space-x-2"
-                      >
-                        <Download className="h-5 w-5" />
-                        <span>Download Now</span>
-                      </motion.div>
-                    )}
+                  {downloadState === "idle" && (
+                    <div className="flex items-center space-x-2">
+                      <Download className="h-5 w-5" />
+                      <span>Download Now</span>
+                    </div>
+                  )}
 
-                    {downloadState === "loading" && (
-                      <motion.div
-                        key="loading"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="flex items-center space-x-2"
-                      >
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                        <span>Downloading... {Math.round(progress)}%</span>
-                      </motion.div>
-                    )}
+                  {downloadState === "loading" && (
+                    <div className="flex items-center space-x-2">
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      <span>Downloading... {Math.round(progress)}%</span>
+                    </div>
+                  )}
 
-                    {downloadState === "success" && (
-                      <motion.div
-                        key="success"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="flex items-center space-x-2"
-                      >
-                        <CheckCircle className="h-5 w-5" />
-                        <span>Download Complete!</span>
-                      </motion.div>
-                    )}
+                  {downloadState === "success" && (
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-5 w-5" />
+                      <span>Download Complete!</span>
+                    </div>
+                  )}
 
-                    {downloadState === "error" && (
-                      <motion.div
-                        key="error"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="flex items-center space-x-2"
-                      >
-                        <AlertCircle className="h-5 w-5" />
-                        <span>Try Again</span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {downloadState === "error" && (
+                    <div className="flex items-center space-x-2">
+                      <AlertCircle className="h-5 w-5" />
+                      <span>Try Again</span>
+                    </div>
+                  )}
                 </Button>
-              </motion.div>
+              </div>
 
               {/* Progress Bar */}
-              <AnimatePresence>
-                {downloadState === "loading" && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="space-y-2"
-                  >
-                    <Progress value={progress} className="h-2" />
-                    <p className="text-sm text-muted-foreground text-center">
-                      {selectedFormat === "video" ? "Processing video..." : "Extracting audio..."}
-                    </p>
-                  </motion.div>
-                )}
+              {downloadState === "loading" && (
+                <div className="space-y-2 animate-fade-in">
+                  <Progress value={progress} className="h-2" />
+                  <p className="text-sm text-muted-foreground text-center">
+                    {selectedFormat === "video" ? "Processing video..." : "Extracting audio..."}
+                  </p>
+                </div>
+              )}
 
-                {downloadState === "success" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="text-center p-4 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800"
-                  >
-                    <p className="text-green-700 dark:text-green-300 font-medium">
-                      Download completed successfully! Check your downloads folder.
-                    </p>
-                  </motion.div>
-                )}
+              {downloadState === "success" && (
+                <div className="text-center p-4 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800 animate-fade-in">
+                  <p className="text-green-700 dark:text-green-300 font-medium">
+                    Download completed successfully! Check your downloads folder.
+                  </p>
+                </div>
+              )}
 
-                {downloadState === "error" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="text-center p-4 bg-red-50 dark:bg-red-950 rounded-lg border border-red-200 dark:border-red-800"
-                  >
-                    <p className="text-red-700 dark:text-red-300 font-medium">
-                      {errorMessage || "Download failed. Please check if the URL is valid and accessible."}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {downloadState === "error" && (
+                <div className="text-center p-4 bg-red-50 dark:bg-red-950 rounded-lg border border-red-200 dark:border-red-800 animate-fade-in">
+                  <p className="text-red-700 dark:text-red-300 font-medium">
+                    {errorMessage || "Download failed. Please check if the URL is valid and accessible."}
+                  </p>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
