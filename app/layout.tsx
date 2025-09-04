@@ -1,12 +1,23 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
+import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
 import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+})
 
 export const metadata: Metadata = {
   title: "Y2Mate Downloaders - Download Videos & Audio",
@@ -34,7 +45,7 @@ export default function RootLayout({
           async
         />
       </head>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${inter.variable} ${jetbrainsMono.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Suspense fallback={<div>Loading...</div>}>
             <Navigation />
